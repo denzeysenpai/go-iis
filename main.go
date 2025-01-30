@@ -9,6 +9,7 @@ import (
 
 func main() {
 	router := gin.Default()
+	router.RemoveExtraSlash = true
 	router.GET("/", HelloWorld)
 	router.GET("/hi", func(c *gin.Context) {
 		log.Print("Works")
@@ -24,4 +25,5 @@ type Response struct {
 func HelloWorld(c *gin.Context) {
 	resp := Response{message: "okay"}
 	c.IndentedJSON(http.StatusOK, resp)
+	c.HTML(200, "./index.html", "")
 }
